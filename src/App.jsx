@@ -16,7 +16,6 @@ function App() {
 
   useEffect(() => {
     if (!value || !people || parseFloat(people) === 0 || parseFloat(value) === 0) {
-        // If any required input is empty or zero, return early
         return;
     }
 
@@ -24,7 +23,6 @@ function App() {
     let tipAmount = 0;
 
     if (tip && parseFloat(tip) !== 0) {
-        // Calculate tip amount only if tip is provided and not zero
         tipAmount = (totalAmount * parseFloat(tip)) / 100;
     }
 
@@ -41,7 +39,6 @@ function App() {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    // Define the regex patterns for different input types
     const patterns = {
       value: /^\d{0,5}(\.\d{0,2})?$/,
       tip: /^\d{0,2}$/,
