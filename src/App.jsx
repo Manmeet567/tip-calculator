@@ -6,8 +6,10 @@ import PeopleIcon from "./assets/icon-person.svg";
 function App() {
   const tipArr = [5, 10, 15, 25, 50];
   const [value, setValue] = useState("");
-  const [tip, setTip] = useState(0);
+  const [tip, setTip] = useState("");
+  const [isCustom, setIsCustom] = useState(false);
   const [people, setPeople] = useState("");
+  console.log(tip);
   const handleChange = (event) => {
     const { name, value: inputValue } = event.target;
 
@@ -15,6 +17,9 @@ function App() {
     if (name === "value") {
       const result = inputValue.replace(/[^0-9.]/g, "");
       setValue(result);
+    } else if (name === "tip") {
+      const result = inputValue.replace(/[^0-9.]/g, "");
+      setTip(result);
     } else if (name === "people") {
       const result = inputValue.replace(/\D/g, "");
       setPeople(result);
@@ -47,9 +52,27 @@ function App() {
             <p>Select Tip %</p>
             <div className="stc-container">
               {tipArr.map((item, index) => (
-                <button key={index}>{item}%</button>
+                <button
+                  onClick={() => {
+                    setTip(item);
+                    setIsCustom(false);
+                  }}
+                  key={index}
+                >
+                  {item}%
+                </button>
               ))}
-              <button>Custom</button>
+              {!isCustom && (
+                <button onClick={() => setIsCustom(true)}>Custom</button>
+              )}
+              {isCustom && (
+                <input
+                  type="text"
+                  name="tip"
+                  value={tip}
+                  onChange={handleChange}
+                />
+              )}
             </div>
           </div>
 

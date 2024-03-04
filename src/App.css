@@ -118,6 +118,12 @@
   gap: 10px;
 }
 
+.stc-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
 .stc-container button {
   width: 100%;
   padding: 10px;
@@ -128,7 +134,18 @@
   font-weight: 700;
   cursor: pointer;
   border-radius: 5px;
-  transition: 0.1s linear;
+}
+.stc-container input[type="text"] {
+  width: 100%;
+  padding: 0 10px;
+  border: 2px solid var(--primary-strong-cyan);
+  outline: none;
+  background-color: #fff;
+  text-align: right;
+  font-size: 22px;
+  color: var(--neutral-very-dark-cyan);
+  font-weight: 700;
+  border-radius: 5px;
 }
 .stc-container button:last-child {
   background-color: var(--neutral-very-light-grayish-cyan);
@@ -138,6 +155,10 @@
 .stc-container button:hover {
   background-color: var(--primary-strong-cyan);
   color: var(--neutral-very-dark-cyan);
+}
+
+.stc-container input[type="text"].active {
+  display: block; /* Show the input field when active */
 }
 
 .main-calculator-container > div:nth-child(2) {
