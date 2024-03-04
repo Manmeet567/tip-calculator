@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+/* Primary Colors */
+:root {
+  --primary-strong-cyan: hsl(172, 67%, 45%);
+}
+
+/* Neutral Colors */
+:root {
+  --neutral-very-dark-cyan: hsl(183, 100%, 15%);
+  --neutral-dark-grayish-cyan: hsl(186, 14%, 43%);
+  --neutral-grayish-cyan: hsl(184, 14%, 56%);
+  --neutral-light-grayish-cyan: hsl(185, 41%, 84%);
+  --neutral-very-light-grayish-cyan: hsl(189, 41%, 97%);
+  --neutral-white: hsl(0, 0%, 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Mono", monospace;
+}
+
+.tip-calculator {
+  background-color: var(--neutral-light-grayish-cyan);
+  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.heading {
+  color: var(--neutral-very-dark-cyan);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  margin-bottom: 40px;
+}
+.heading p {
+  margin: 5px 0;
+}
+
+.main-calculator-container {
+  width: 850px;
+  background-color: var(--neutral-white);
+  height: 400px;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 30px;
+}
+
+.main-calculator-container > div {
+  width: 47%;
+}
+.left-container {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+.input-box {
+  width: 100%;
+}
+.input-box > p {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--neutral-very-dark-cyan);
+  margin-bottom: 5px;
+}
+
+.bill-input-box {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  padding: 5px 10px;
+  background-color: var(--neutral-very-light-grayish-cyan);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  transition: 0.1s linear;
+}
+.bill-input-box img {
+  height: 30px;
+  padding: 6px;
+}
+.bill-input-box > input {
+  height: 30px;
+  width: 100%;
+  background-color: transparent;
+  text-align: right;
+  border: none;
+  outline: none;
+  font-size: 22px;
+  color: var(--neutral-very-dark-cyan);
+  font-weight: 700;
+}
+.bill-input-box > input::placeholder {
+  color: var(--neutral-grayish-cyan);
+}
+.bill-input-box:hover {
+  border: 2px solid var(--primary-strong-cyan);
+}
+.bill-input-box:focus-within {
+  border: 2px solid var(--primary-strong-cyan);
+}
+
+.main-calculator-container > div:nth-child(2) {
+  background-color: var(--neutral-very-dark-cyan);
+  border-radius: 15px;
+}
