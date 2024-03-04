@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./App.css";
 import DollarIcon from "./assets/icon-dollar.svg";
+import PeopleIcon from "./assets/icon-person.svg";
 
 function App() {
   const tipArr = [5, 10, 15, 25, 50];
-  const [value, setValue] = useState(0);
-  const [people, setPeople] = useState(0);
+  const [value, setValue] = useState("");
+  const [tip, setTip] = useState(0);
+  const [people, setPeople] = useState("");
   const handleChange = (event) => {
     const { name, value: inputValue } = event.target;
 
@@ -44,14 +46,17 @@ function App() {
           <div className="select-tip-container">
             <p>Select Tip %</p>
             <div className="stc-container">
-              <button></button>
+              {tipArr.map((item, index) => (
+                <button key={index}>{item}%</button>
+              ))}
+              <button>Custom</button>
             </div>
           </div>
 
           <div className="people-input">
             <p>Number of People</p>
             <div className="bill-input-box">
-              <img src={DollarIcon} alt="$" />
+              <img src={PeopleIcon} alt="$" />
               <input
                 type="text"
                 placeholder="0"

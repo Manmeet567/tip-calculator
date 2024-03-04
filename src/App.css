@@ -55,20 +55,23 @@
 }
 
 .main-calculator-container > div {
-  width: 47%;
+  width: 48%;
 }
 .left-container {
   padding: 0 10px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 .input-box {
   width: 100%;
 }
-.input-box > p {
+.input-box > p,
+.people-input > p,
+.select-tip-container > p {
   font-size: 16px;
   font-weight: 700;
-  color: var(--neutral-very-dark-cyan);
+  color: var(--neutral-dark-grayish-cyan);
   margin-bottom: 5px;
 }
 
@@ -106,6 +109,35 @@
 }
 .bill-input-box:focus-within {
   border: 2px solid var(--primary-strong-cyan);
+}
+
+.stc-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 10px;
+}
+
+.stc-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: var(--neutral-very-dark-cyan);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.1s linear;
+}
+.stc-container button:last-child {
+  background-color: var(--neutral-very-light-grayish-cyan);
+  color: var(--neutral-grayish-cyan);
+}
+
+.stc-container button:hover {
+  background-color: var(--primary-strong-cyan);
+  color: var(--neutral-very-dark-cyan);
 }
 
 .main-calculator-container > div:nth-child(2) {
