@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import DollarIcon from "./assets/icon-dollar.svg";
 import PeopleIcon from "./assets/icon-person.svg";
@@ -10,21 +10,70 @@ function App() {
   const [isCustom, setIsCustom] = useState(false);
   const [people, setPeople] = useState("");
   const [activeButton, setActiveButton] = useState(null);
-  console.log(tip);
-  const handleChange = (event) => {
-    const { name, value: inputValue } = event.target;
 
-    // Check the name attribute to determine which state to update
-    if (name === "value") {
-      const result = inputValue.replace(/[^0-9.]/g, "");
-      setValue(result);
-    } else if (name === "tip") {
-      const result = inputValue.replace(/[^0-9.]/g, "");
-      setTip(result);
-    } else if (name === "people") {
-      const result = inputValue.replace(/\D/g, "");
-      setPeople(result);
+  const [calculatedTip, setCalculatedTip] = useState(0.0);
+  const [total, setTotal] = useState(0.0);
+
+  useEffect(() => {
+    if (!value || !people || parseFloat(people) === 0 || parseFloat(value) === 0) {
+        // If any required input is empty or zero, return early
+        return;
     }
+
+    let totalAmount = parseFloat(value);
+    let tipAmount = 0;
+
+    if (tip && parseFloat(tip) !== 0) {
+        // Calculate tip amount only if tip is provided and not zero
+        tipAmount = (totalAmount * parseFloat(tip)) / 100;
+    }
+
+    totalAmount += tipAmount;
+
+    const totalPerPerson = (totalAmount / parseFloat(people)).toFixed(2);
+    const tipPerPerson = (tipAmount / parseFloat(people)).toFixed(2);
+
+    setCalculatedTip(tipPerPerson);
+    setTotal(totalPerPerson);
+}, [value, tip, people]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    // Define the regex patterns for different input types
+    const patterns = {
+      value: /^\d{0,5}(\.\d{0,2})?$/,
+      tip: /^\d{0,2}$/,
+      people: /^\d{0,4}$/,
+    };
+
+    const isValidInput = patterns[name].test(value);
+
+    if (isValidInput) {
+      switch (name) {
+        case "value":
+          setValue(value);
+          break;
+        case "tip":
+          setTip(value);
+          break;
+        case "people":
+          setPeople(value);
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  const reset = () => {
+    setValue("");
+    setPeople("");
+    setTip("");
+    setIsCustom(false);
+    setActiveButton(null);
+    setCalculatedTip(0);
+    setTotal(0);
   };
 
   return (
@@ -103,7 +152,33 @@ function App() {
           </div>
         </div>
 
-        <div className="right-container"></div>
+        <div className="right-container">
+          <div>
+            <div className="tip-per-person">
+              <div className="label">
+                <p>Tip Amount</p>
+                <p>/ person</p>
+              </div>
+              <div className="amount">
+                <p>${calculatedTip !== "0" ? calculatedTip : "0.00"}</p>
+              </div>
+            </div>
+
+            <div className="total-per-person">
+              <div className="label">
+                <p>Total</p>
+                <p>/ person</p>
+              </div>
+              <div className="amount">
+                <p>${total !== "0" ? total : "0.00"}</p>
+              </div>
+            </div>
+          </div>
+
+          <button onClick={reset} disabled={!value || !people}>
+            RESET
+          </button>
+        </div>
       </div>
     </div>
   );
