@@ -135,6 +135,17 @@
   cursor: pointer;
   border-radius: 5px;
 }
+.stc-container button.active {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: var(--primary-strong-cyan);
+  color: var(--neutral-very-dark-cyan);
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 5px;
+}
 .stc-container input[type="text"] {
   width: 100%;
   padding: 0 10px;

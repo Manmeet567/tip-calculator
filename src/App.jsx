@@ -9,6 +9,7 @@ function App() {
   const [tip, setTip] = useState("");
   const [isCustom, setIsCustom] = useState(false);
   const [people, setPeople] = useState("");
+  const [activeButton, setActiveButton] = useState(null);
   console.log(tip);
   const handleChange = (event) => {
     const { name, value: inputValue } = event.target;
@@ -56,20 +57,31 @@ function App() {
                   onClick={() => {
                     setTip(item);
                     setIsCustom(false);
+                    setActiveButton(index);
                   }}
                   key={index}
+                  className={activeButton === index ? "active" : ""}
                 >
                   {item}%
                 </button>
               ))}
               {!isCustom && (
-                <button onClick={() => setIsCustom(true)}>Custom</button>
+                <button
+                  onClick={() => {
+                    setTip("");
+                    setIsCustom(true);
+                    setActiveButton(null);
+                  }}
+                >
+                  Custom
+                </button>
               )}
               {isCustom && (
                 <input
                   type="text"
                   name="tip"
                   value={tip}
+                  autoFocus
                   onChange={handleChange}
                 />
               )}
