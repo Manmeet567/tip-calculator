@@ -33,6 +33,7 @@ function App() {
     const totalPerPerson = (totalAmount / parseFloat(people)).toFixed(2);
     const tipPerPerson = (tipAmount / parseFloat(people)).toFixed(2);
 
+
     setCalculatedTip(tipPerPerson);
     setTotal(totalPerPerson);
 }, [value, tip, people]);
